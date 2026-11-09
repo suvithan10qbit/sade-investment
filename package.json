@@ -17,6 +17,7 @@
     "react-globe.gl": "^2.38.0"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.16.6",
     "@tailwindcss/postcss": "4.1.16",
     "@types/node": "22.15.3",
     "@types/react": "19.1.2",

@@ -55,7 +55,7 @@ export default function Header() {
 
             {/* Hamburger toggle — mobile only */}
             <button
-              onClick={() => setOpen(o => !o)}
+              onClick={() => setOpen(!open)}
               aria-label={open ? "Close menu" : "Open menu"}
               className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px] rounded-full bg-[#0d1740] hover:bg-[#162056] transition-colors shadow-sm"
             >
