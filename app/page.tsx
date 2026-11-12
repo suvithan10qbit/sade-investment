@@ -8,7 +8,7 @@ import ContactCTASection from "@/components/sections/home/ContactCTASection";
 
 export default function Home() {
   return (
-    <main className="bg-[#faf8f3] text-[#191c1d] font-sans antialiased">
+    <main className="bg-white text-[#111827] font-sans antialiased">
       <HeroSection />
       <PerspectiveSection />
       <SectorsSection />

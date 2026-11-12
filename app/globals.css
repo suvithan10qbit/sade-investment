@@ -19,7 +19,7 @@
 
 * { box-sizing: border-box; }
 
-body { margin: 0; background: #faf8f3; }
+body { margin: 0; background: #FFFFFF; }
 
 .card-glass {
   background: rgb(255 255 255 / 85%);
@@ -47,3 +47,58 @@ body { margin: 0; background: #faf8f3; }
   -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
   mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
 }
+
+/* Home hero: full-bleed architecture and soft sculpted foreground. */
+.sade-hero { position: relative; isolation: isolate; overflow: hidden; min-height: max(760px, 50vw); background: #eef1fa; color: #111a3a; }
+.sade-hero-image { object-fit: cover; object-position: center; z-index: -3; }
+.sade-hero-wash { position: absolute; inset: 0; z-index: -2; background: linear-gradient(90deg, rgba(250,251,255,.98) 0%, rgba(250,251,255,.96) 25%, rgba(250,251,255,.87) 36%, rgba(250,251,255,.4) 51%, transparent 70%); }
+.sade-hero-curves { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+.sade-hero-content { width: 100%; max-width: 1774px; margin: 0 auto; padding: clamp(150px, 9.9vw, 176px) 8.9% 40px; }
+.sade-hero-badge { display: inline-flex; align-items: center; gap: 12px; padding: 11px 21px; border: 1px solid #dce0eb; border-radius: 999px; background: #ffffffb3; box-shadow: 0 1px 5px #1521430d; font-size: clamp(12px, 1vw, 17px); font-weight: 500; }
+.sade-hero-badge span { width: 8px; height: 8px; border-radius: 50%; background: #151f42; flex-shrink: 0; }
+.sade-hero h1 { max-width: 850px; width: 58vw; margin: 27px 0 25px; font-size: clamp(48px, 4.22vw, 75px); line-height: .99; letter-spacing: -.045em; font-weight: 800; }
+.sade-hero h1 span { color: #ad780d; background: linear-gradient(110deg, #ce9a26, #936006); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.sade-hero-description { max-width: 540px; width: 36vw; margin: 30px 0; font-size: clamp(15px, 1.1vw, 20px); line-height: 1.4; color: #505774; font-weight: 500; }
+.sade-hero-actions { display: flex; flex-wrap: wrap; gap: 20px; }
+.sade-hero-actions a { display: inline-flex; align-items: center; justify-content: center; gap: 15px; padding: 16px 35px; border-radius: 999px; font-size: 16px; font-weight: 700; transition: transform .2s, box-shadow .2s; }
+.sade-hero-actions a:hover { transform: translateY(-2px); box-shadow: 0 7px 18px #17214224; }
+.sade-hero-primary { color: white; background: linear-gradient(135deg, #192446, #151e3b); box-shadow: 0 6px 12px #17214220; }
+.sade-hero-primary svg { width: 24px; height: 24px; color: #d5a32e; }
+.sade-hero-secondary { border: 1px solid #939bb2; background: #ffffff9c; }
+.sade-hero-facts { display: flex; align-items: center; margin-top: 42px; font-size: clamp(11px, .82vw, 14px); font-weight: 500; }
+.sade-hero-facts > span { display: flex; align-items: center; gap: 17px; padding: 0 32px; white-space: nowrap; }
+.sade-hero-facts > span:first-child { padding-left: 10px; }
+.sade-hero-facts > span + span { border-left: 1px solid #d5d9e6; }
+.sade-hero-facts svg { width: 28px; height: 28px; stroke: #303a60; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sade-hero-scroll { display: inline-flex; align-items: center; gap: 18px; margin-top: 64px; padding: 15px 14px; border: 1px solid #e7eaf5; border-radius: 999px; font-size: 14px; }
+.sade-hero-scroll svg { width: 22px; height: 22px; transition: transform .2s; }
+.sade-hero-scroll:hover svg { transform: translateY(3px); }
+.sade-site-header { border-bottom-right-radius: 110px; padding: 18px 6.2%; background: linear-gradient(110deg, rgba(255,255,255,.98) 0%, rgba(248,249,255,.97) 72%, rgba(225,228,241,.95) 100%); border-bottom: 1px solid rgba(255,255,255,.8); }
+.sade-site-header > div { max-width: 1554px; }
+.sade-site-header nav { gap: clamp(0px, 1.4vw, 25px); font-size: 14px; color: #111a3a; font-weight: 600; }
+.sade-site-header > div > div > a { padding: 15px 30px; font-size: 15px; }
+#perspective { scroll-margin-top: 95px; }
+@media (min-width: 1600px) { .sade-hero h1 { margin-top: 32px; } .sade-hero-description { margin-top: 30px; margin-bottom: 32px; } }
+@media (max-width: 1200px) { .sade-site-header { padding-left: 4%; padding-right: 4%; } .sade-site-header nav { font-size: 12px; gap: 0; } .sade-site-header > div > div > a { padding: 13px 19px; font-size: 12px; } .sade-hero-content { padding-left: 6%; padding-right: 6%; } .sade-hero h1 { width: 65vw; } .sade-hero-facts > span { padding: 0 20px; gap: 10px; } }
+@media (max-width: 767px) {
+  .sade-site-header { padding: 12px 24px; border-bottom-right-radius: 45px; }
+  .sade-site-header img { height: 46px; }
+  .sade-hero { min-height: 900px; }
+  .sade-hero-image { object-position: 65% bottom; }
+  .sade-hero-wash { background: linear-gradient(180deg, #fafbff 0%, #fafbfff5 34%, #fafbffdf 54%, #fafbff40 79%, transparent 100%); }
+  .sade-hero-content { padding: 128px 24px 230px; }
+  .sade-hero-badge { font-size: 11px; padding: 10px 13px; gap: 8px; }
+  .sade-hero h1 { width: 100%; max-width: 580px; font-size: clamp(40px, 7.5vw, 57px); line-height: 1.07; margin: 25px 0; }
+  .sade-desktop-break { display: none; }
+  .sade-hero-description { width: 100%; max-width: 480px; font-size: 15px; margin: 23px 0; }
+  .sade-hero-actions { gap: 12px; }
+  .sade-hero-actions a { padding: 14px 20px; font-size: 13px; gap: 9px; }
+  .sade-hero-primary svg { width: 20px; height: 20px; }
+  .sade-hero-facts { flex-wrap: wrap; gap: 18px 0; margin-top: 30px; font-size: 11px; }
+  .sade-hero-facts > span, .sade-hero-facts > span:first-child { padding: 0 12px; gap: 7px; }
+  .sade-hero-facts > span:first-child { padding-left: 0; }
+  .sade-hero-facts > span:last-child { padding-left: 0; border: 0; flex-basis: 100%; }
+  .sade-hero-facts svg { width: 23px; height: 23px; }
+  .sade-hero-scroll { margin-top: 30px; background: #ffffff80; font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .sade-hero a, .sade-hero svg { transition: none; } }

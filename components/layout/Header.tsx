@@ -2,12 +2,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSidebar } from "./SidebarContext";
 
 export default function Header() {
   const pathname = usePathname();
   const { open, setOpen } = useSidebar();
+  const [scrolled, setScrolled] = useState(false);
 
   // Close sidebar on route change
   useEffect(() => { setOpen(false); }, [pathname]);
@@ -17,6 +18,12 @@ export default function Header() {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const links = [
     { href: "/about", label: "About" },
@@ -29,7 +36,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-50 py-3 px-6 md:px-12 backdrop-blur-sm bg-white/80 border-b border-neutral-200/60">
+      <header className={`sade-site-header fixed top-0 left-0 w-full z-50 py-3 px-6 md:px-12 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-200/60" : "bg-white/90 backdrop-blur-sm border-b border-neutral-200/40"}`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
@@ -40,17 +47,25 @@ export default function Header() {
           <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-1 text-xs font-medium text-neutral-600">
             {links.map(l => (
               <Link key={l.href} href={l.href}
-                className={`px-3 py-1.5 rounded-full transition-colors ${pathname === l.href ? "bg-[#0d1740] text-white font-semibold" : "hover:text-neutral-900 hover:bg-neutral-100"}`}>
+                aria-current={pathname === l.href ? "page" : undefined}
+                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full transition-colors ${pathname === l.href ? "bg-[#101C3A]/5 text-[#101C3A] font-semibold" : "hover:text-[#101C3A] hover:bg-neutral-100"}`}>
                 {l.label}
+                {l.href === "/investment-focus" && (
+                  <svg aria-hidden="true" className="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none">
+                    <path d="m3 6 5 5 5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
               </Link>
             ))}
           </nav>
 
           {/* Desktop CTA + Mobile toggle */}
           <div className="flex items-center gap-3">
-            <Link href="/contact" className="hidden lg:inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-xs font-semibold bg-[linear-gradient(135deg,#8b6a14,#c9a84c,#e8d4a0)] text-[#0d1740] hover:opacity-90 transition-all duration-200 shadow-sm">
-              Start a conversation
-              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path fillRule="evenodd" clipRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" /></svg>
+            <Link href="/contact" className="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold bg-[#101C3A] text-white hover:bg-[#172448] transition-all duration-200 shadow-sm">
+              Start a Conversation
+              <svg className="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none">
+                <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#C69A32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </Link>
 
             {/* Hamburger toggle — mobile only */}
@@ -115,10 +130,12 @@ export default function Header() {
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
-            className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-full text-sm font-semibold bg-[linear-gradient(135deg,#8b6a14,#c9a84c,#e8d4a0)] text-[#0d1740] hover:opacity-90 transition-all shadow-sm"
+            className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-full text-sm font-semibold bg-[#101C3A] text-white hover:bg-[#172448] transition-all shadow-sm"
           >
-            Start a conversation
-            <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path fillRule="evenodd" clipRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" /></svg>
+            Start a Conversation
+            <svg className="w-4 h-4" viewBox="0 0 14 14" fill="none">
+              <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#C69A32" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </Link>
         </div>
       </aside>
